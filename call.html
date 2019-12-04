@@ -245,8 +245,8 @@
                 isConnected = true;
                 document.querySelector('#enterBtn').innerHTML = "leave";
                 remon = new Remon({ config, listener });
-                await remon.createRoom("live-fit-test")
-                let participants = await remon.fetchRooms("live-fit-test");
+                await remon.createRoom("remon")
+                let participants = await remon.fetchRooms("remon");
                 participants.forEach(async function(participant){
                   if(!remonRoom[participant.id]){
                           remonRoom[participant.id] = true;
