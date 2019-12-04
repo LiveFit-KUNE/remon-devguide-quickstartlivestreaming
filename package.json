@@ -1,0 +1,22 @@
+{
+  "name": "live-fit",
+  "version": "1.0.0",
+  "description": "이 저장소를 fork 해주십시오. 이 화면 오른쪽 위에 Fork 버튼을 클릭하면 됩니다.",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LiveFit-KUNE/remon-devguide-quickstartlivestreaming.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LiveFit-KUNE/remon-devguide-quickstartlivestreaming/issues"
+  },
+  "homepage": "https://github.com/LiveFit-KUNE/remon-devguide-quickstartlivestreaming#readme",
+  "dependencies": {
+    "http-server": "^0.12.0"
+  }
+}
