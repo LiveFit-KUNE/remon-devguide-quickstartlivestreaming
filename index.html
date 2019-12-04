@@ -41,8 +41,8 @@
 
                 <!-- Page Heading -->
                 <h4 class="font-weight-bold">How to use</h4>
-                <li>현재 방송중이라면 채널 목록에 방송 채널명이 보입니다.</li>
-                <li>방송중이 아니라면 비디오창 아래의 "Room Name"에 방명을 영어(!!)로 입력하고 방송을 시작하세요. </li>
+                <li>방송시작을 누르면 방송을 시작할 수 있습니다.</li>
+                <li>방송중이라면 방송리스트가 표시됩니다.</li>
                 <br>
 
                 <!-- Content Row -->
@@ -51,7 +51,7 @@
                         <div class="card shadow mb-4">
                             <!-- Card Header - Dropdown -->
                             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                <h6 class="m-0 font-weight-bold text-primary">현재 방송중인 채널</h6>
+                                <h6 class="m-0 font-weight-bold text-primary">방송리스트</h6>
                             </div>
                             <!-- Card Body -->
                             <div class="card-body">
@@ -74,8 +74,11 @@
                                     <h6 id="waitingTv" class="m-0 font-weight-bold text-primary"
                                         style="z-index:3; position: absolute;bottom: 55px;right:45px; visibility: hidden;">
                                         waiting</h6>
-                                    <br>
-                                    <a id="channelBtn" href="#" class="btn btn-primary btn-user btn-block text-center">
+
+                                    <input id="channelNameInput" class="form-control text-center" type="text"
+                                        placeholder="room name" autofocus>
+                                    <a id="channelBtn" href="#"
+                                    class="btn btn-primary btn-user btn-block text-center">
                                         방송시작
                                     </a>
                                 </main>
@@ -94,6 +97,7 @@
             <script>
 const channelBtnEl = document.querySelector('#channelBtn');
 const channelList = document.getElementById("lvChannel");
+const channelNameInput = document.getElementById("channelNameInput");
 const waitingTv = document.getElementById("waitingTv");
 let isConnected = false;
 let isCaster = false;
@@ -154,6 +158,7 @@ function setViewsViaParameters(runWaitLoop, waitingTvVisibility, btnText, inputV
     }
     waitingTv.style.visibility = waitingTvVisibility;
     channelBtnEl.innerHTML = btnText;
+    channelNameInput.style.visibility = inputVisiblility;
 }
 
 function start(isViewer) {
@@ -171,7 +176,8 @@ function start(isViewer) {
             config.view.remote = '#localVideo';
         }
         remon = new Remon({config, listener});
-        myChannelId = getRandomId();
+        myChannelId = channelNameInput.value ? channelNameInput.value : getRandomId();
+        channelNameInput.value = "";
         isCaster? remon.createCast(myChannelId): remon.joinCast(myChannelId);
     }
 }
@@ -230,6 +236,7 @@ function startSearchLoop() {
                 btn.value = ch.name;
                 btn.className = "btn btn-primary btn-user btn-block text-center";
                 btn.addEventListener('click', (evt) => {
+                    channelNameInput.value = ch.id;
                     start(true);
                     evt.preventDefault();
                 }, false);
@@ -258,7 +265,7 @@ function startSearchLoop() {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.compatibility.js"></script>
 
 <!-- Custom scripts for all pages-->
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/startbootstrap-sb-admin-2/3.3.7+1/css/sb-admin-2.css"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/startbootstrap-sb-admin-2/3.3.7+1/css/sb-admin-2.css"></script>
 
 </body>
 
