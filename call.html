@@ -247,6 +247,8 @@
                 remon = new Remon({ config, listener });
                 await remon.createRoom("remon")
                 let participants = await remon.fetchRooms("remon");
+                console.log("=== get participants ===")
+                console.log(participants)
                 participants.forEach(async function(participant){
                   if(!remonRoom[participant.id]){
                           remonRoom[participant.id] = true;
@@ -289,7 +291,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.compatibility.js"></script>
 
 <!-- Custom scripts for all pages-->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/startbootstrap-sb-admin-2/3.3.7+1/css/sb-admin-2.css"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/startbootstrap-sb-admin-2/3.3.7+1/css/sb-admin-2.css"></script> -->
 
   </body>
 </html>
